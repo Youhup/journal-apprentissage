@@ -1,0 +1,10 @@
+{% extends "journaux_apprentissage/base.html" %}
+
+{% block page_header %}
+    <div class="jumbotron">
+    <h1 class="display-4">Suivez vos apprentissage</h1>
+<p class="lead">Ce journal sert a enregistrer des notes a propos differentes sujets</p>
+    <a class="btn btn-lg btn-primary" href="{% url 'utilisateurs:register' %}"
+       role="button">S'inscrire &raquo;</a>
+    </div>
+{% endblock page_header %}

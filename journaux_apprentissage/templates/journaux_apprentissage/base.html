@@ -1,0 +1,60 @@
+{% load bootstrap4 %}
+<!doctype html>
+<html lang = "fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
+    <title>Journal d'apprentissage</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+    <a class="navbar-brand" href="{% url 'journaux_apprentissage:index' %}">Journal d'apprentissage</a>
+<button class="navbar-toggler" type="button"
+        data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false"
+        aria-label="Toggle navigation">
+    <span class="navbar-toggle-icon"></span></button>
+<div class="collapse navbar-collapse" id ="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'journaux_apprentissage:topics' %}">Sujets</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <span class="navbar-text">Bonjour {{ user.username }}.</span>
+        </li>
+        <li class="nav-item">
+        <form method="post" action="{% url 'utilisateurs:logout' %}" >
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link" style=" color: gray;">
+                Se déconnecter
+            </button>
+        </form>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'utilisateurs:register' %}">S'inscrire</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'utilisateurs:login' %}">Se connecter</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+</nav>
+<main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+        {% block page_header %}{% endblock page_header %}
+    <div>
+        {% block content %}{% endblock content %}
+    </div>
+    </div>
+</main>
+</body>
+</html>

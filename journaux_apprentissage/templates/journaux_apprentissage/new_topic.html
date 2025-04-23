@@ -1,0 +1,16 @@
+{% extends "journaux_apprentissage/base.html" %}
+{% load bootstrap4 %}
+{% block page_header %}
+            <p>Ajouter un nouveau sujet :</p>
+{% endblock page_header %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'journaux_apprentissage:new_topic' %}" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+{% buttons %}
+    <button name = "submit" class="btn btn-primary">Ajouter le sujet</button>
+    {% endbuttons %}
+</form>
+{% endblock content %}
